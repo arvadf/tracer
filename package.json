@@ -1,0 +1,15 @@
+{
+  "name": "tracer",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=web\" \"npm run dev --workspace=api\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

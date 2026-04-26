@@ -1,0 +1,1235 @@
+
+
+PRODUCT REQUIREMENTS DOCUMENT
+
+Tracer Study Alumni PTI UMS
+
+Jalur Profesi PPG & Studi Lanjut S2/S3
+
+Versi 1.0  •  April 2026
+
+ 
+
+Nama Produk
+
+Tracer Study Alumni PTI UMS
+
+Versi Dokumen
+
+1.0
+
+Tanggal
+
+April 2026
+
+Tim/Unit
+
+Program Studi Pendidikan Teknologi Informasi, UMS
+
+Status
+
+Draft - Untuk Review
+
+ 
+
+
+
+ 
+
+1. Pendahuluan
+
+1.1 Latar Belakang
+
+Program Studi Pendidikan Teknologi Informasi (PTI) Universitas Muhammadiyah Surakarta (UMS) membutuhkan sistem tracer study yang terstruktur untuk memantau perkembangan karir alumni, khususnya pada dua jalur utama: (1) Profesi Guru melalui Program PPG, dan (2) Studi Lanjut ke jenjang S2 maupun S3.
+
+
+
+ 
+
+1.2 Tujuan Produk
+
+• 	Memudahkan alumni PTI UMS untuk mengisi data tracer study secara mandiri melalui web
+
+• 	Menyediakan database alumni yang terkelola dengan baik dan dapat diperbarui oleh admin
+
+• 	Menghasilkan dashboard analitik yang membantu prodi memahami sebaran alumni pada jalur PPG dan S2/S3
+
+• 	Mendukung proses akreditasi dan evaluasi kurikulum Program Studi PTI UMS
+
+ 
+
+1.3 Ruang Lingkup
+
+Aplikasi ini mencakup dua modul utama:
+
+• 	Modul Alumni (User): Pencarian nama, pengisian survey, dan pembaruan data
+
+• 	Modul Admin: Manajemen database alumni, monitoring pengisian, dan dashboard laporan
+
+ 
+
+Scope survey terbatas pada dua jalur karir: Profesi PPG dan Studi Lanjut S2/S3. Perluasan ke jalur lain di luar scope ini tidak termasuk dalam versi pertama aplikasi.
+
+ 
+
+1.4 Definisi & Singkatan
+
+Istilah
+
+Definisi
+
+PTI UMS
+
+Program Studi Pendidikan Teknologi Informasi, Universitas Muhammadiyah Surakarta
+
+PPG
+
+Pendidikan Profesi Guru - program pendidikan profesi untuk calon guru
+
+Tracer Study
+
+Studi penelusuran jejak alumni setelah lulus dari perguruan tinggi
+
+Admin
+
+Pengelola sistem dari pihak Prodi PTI UMS yang memiliki akses penuh ke dashboard
+
+Alumni
+
+Lulusan Program Studi PTI UMS yang menjadi responden survey
+
+Database Alumni
+
+Kumpulan data nama alumni yang diimpor melalui file Excel oleh Admin
+
+ 
+
+
+
+ 
+
+2. Pengguna Sistem
+
+2.1 Jenis Pengguna
+
+Jenis Pengguna
+
+Deskripsi
+
+Akses
+
+Alumni (User)
+
+Lulusan PTI UMS yang namanya terdaftar di database alumni
+
+Halaman survey publik (tanpa login)
+
+Admin
+
+Staf/dosen PTI UMS yang mengelola data dan laporan
+
+Dashboard admin (login wajib)
+
+ 
+
+2.2 Karakteristik Pengguna Alumni
+
+• 	Tidak memerlukan akun atau login
+
+• 	Hanya dapat mengisi survey jika nama ditemukan di database alumni
+
+• 	Dapat mengakses dan mengedit jawaban survey yang telah disubmit sebelumnya
+
+• 	Mengakses sistem melalui browser di desktop maupun perangkat mobile
+
+ 
+
+2.3 Karakteristik Pengguna Admin
+
+• 	Menggunakan username dan password untuk login
+
+• 	Memiliki akses penuh terhadap seluruh data survey alumni
+
+• 	Dapat mengelola (tambah, lihat, hapus) database alumni melalui upload Excel
+
+• 	Dapat mengunduh data survey dalam format Excel/CSV
+
+ 
+
+
+
+ 
+
+3. Fitur & Persyaratan Fungsional
+
+3.1 Modul Alumni (User)
+
+3.1.1 Halaman Pencarian Alumni
+
+• 	Terdapat kolom pencarian nama dengan fitur autocomplete/suggestion berbasis database alumni
+
+• 	Sistem menampilkan daftar nama yang cocok saat alumni mulai mengetik (minimal 2 karakter)
+
+• 	Alumni memilih namanya dari dropdown/daftar hasil pencarian
+
+• 	Jika nama tidak ditemukan, sistem menampilkan pesan: "Nama Anda tidak terdaftar. Hubungi admin PTI UMS."
+
+• 	Setelah nama dipilih, sistem mengecek apakah alumni sudah pernah mengisi survey
+
+–	Jika belum: lanjut ke form pengisian survey
+
+–	Jika sudah: tampilkan ringkasan jawaban lama dengan opsi "Edit Jawaban"
+
+ 
+
+3.1.2 Formulir Survey
+
+Formulir terdiri dari tiga bagian:
+
+ 
+
+Bagian A: Identitas Dasar
+
+No
+
+Pertanyaan
+
+Tipe Input
+
+Wajib
+
+1
+
+Nama Lengkap
+
+Text (auto-fill dari pencarian)
+
+Ya
+
+2
+
+Tahun Lulus dari UMS
+
+Dropdown (pilih tahun)
+
+Ya
+
+3
+
+Nomor HP Aktif
+
+Text (format nomor telepon)
+
+Ya
+
+4
+
+Status Pekerjaan Saat Ini
+
+Dropdown pilihan
+
+Ya
+
+5
+
+Nama Instansi/Tempat Mengajar
+
+Text
+
+Ya
+
+6
+
+Pesan/Saran untuk Prodi PTI UMS terkait PPG
+
+Textarea
+
+Tidak
+
+ 
+
+Pilihan Status Pekerjaan: Belum Bekerja, Bekerja sebagai Guru/Pendidik, Bekerja Non-Pendidikan, Mahasiswa S2/S3, Lainnya.
+
+ 
+
+Bagian B: Studi Lanjut S2/S3 (Conditional)
+
+No
+
+Pertanyaan
+
+Tipe Input
+
+Kondisi Tampil
+
+7
+
+Apakah melanjutkan studi ke S2/S3?
+
+Radio: Ya / Tidak
+
+Selalu tampil
+
+8
+
+Jurusan/Program Studi S2/S3
+
+Text
+
+Jika jawaban No.7 = Ya
+
+9
+
+Universitas Tempat S2/S3
+
+Text
+
+Jika jawaban No.7 = Ya
+
+ 
+
+Bagian C: Program PPG (Conditional)
+
+No
+
+Pertanyaan
+
+Tipe Input
+
+Kondisi Tampil
+
+10
+
+Apakah mengikuti program PPG?
+
+Radio: Ya / Tidak
+
+Selalu tampil
+
+11
+
+Tahun Mengikuti PPG
+
+Dropdown (pilih tahun)
+
+Jika jawaban No.10 = Ya
+
+12
+
+Universitas Penyelenggara PPG
+
+Text dengan autocomplete
+
+Jika jawaban No.10 = Ya
+
+ 
+
+3.1.3 Proses Submit & Edit
+
+• 	Tombol "Kirim Survey" hanya aktif jika semua field wajib telah diisi
+
+• 	Setelah submit berhasil, tampilkan halaman konfirmasi dengan ringkasan jawaban
+
+• 	Alumni dapat kembali ke halaman pencarian dan memilih namanya kembali untuk melakukan edit
+
+• 	Saat edit, jawaban lama ditampilkan dan bisa diubah, kemudian disimpan ulang
+
+ 
+
+3.2 Modul Admin
+
+3.2.1 Autentikasi Admin
+
+• 	Halaman login terpisah di URL /admin/login
+
+• 	Login menggunakan username dan password
+
+• 	Session login berlaku selama browser aktif (session-based) atau bisa dikonfigurasi timeout
+
+• 	Terdapat tombol logout
+
+ 
+
+3.2.2 Manajemen Database Alumni
+
+• 	Admin dapat mengupload file Excel (.xlsx / .xls) berisi data alumni
+
+• 	Format Excel yang diterima minimal memiliki kolom: Nama Lengkap, NIM, Tahun Lulus
+
+• 	Sistem memvalidasi format file sebelum import, dan menampilkan preview data sebelum dikonfirmasi
+
+• 	Sistem mendeteksi duplikasi nama+NIM dan meminta konfirmasi dari admin sebelum overwrite
+
+• 	Admin dapat melihat daftar seluruh alumni yang ada di database
+
+• 	Admin dapat menghapus data alumni tertentu
+
+• 	Admin dapat menambah alumni secara manual (satu per satu) jika tidak melalui Excel
+
+ 
+
+3.2.3 Monitoring Pengisian Survey
+
+• 	Admin dapat melihat daftar alumni yang sudah mengisi survey (beserta tanggal pengisian)
+
+• 	Admin dapat melihat daftar alumni yang belum mengisi survey
+
+• 	Admin dapat melihat detail jawaban survey dari setiap alumni
+
+• 	Admin dapat mengunduh seluruh data survey dalam format Excel (.xlsx)
+
+• 	Terdapat fitur pencarian/filter berdasarkan nama, tahun lulus, status pengisian
+
+ 
+
+3.2.4 Dashboard & Grafik
+
+• 	Ringkasan statistik utama ditampilkan di halaman utama admin:
+
+–	Total alumni terdaftar di database
+
+–	Jumlah alumni yang sudah mengisi survey
+
+–	Jumlah alumni yang belum mengisi (persentase respons)
+
+• 	Grafik distribusi alumni yang melanjutkan PPG (pie/donut chart: Ya vs Tidak)
+
+• 	Grafik distribusi alumni yang melanjutkan S2/S3 (pie/donut chart: Ya vs Tidak)
+
+• 	Grafik persebaran tahun kelulusan alumni yang sudah mengisi survey (bar chart)
+
+• 	Grafik universitas penyelenggara PPG terbanyak (bar chart horizontal)
+
+• 	Grafik jurusan S2/S3 yang paling banyak dipilih alumni (bar chart horizontal)
+
+• 	Grafik status pekerjaan alumni (pie chart)
+
+ 
+
+
+
+ 
+
+4. Persyaratan Non-Fungsional
+
+4.1 Antarmuka & Pengalaman Pengguna
+
+• 	Aplikasi bersifat mobile-friendly / responsive (mendukung layar 360px hingga 1920px)
+
+• 	Bahasa antarmuka seluruhnya dalam Bahasa Indonesia
+
+• 	Desain bersih, sederhana, dan profesional mencerminkan identitas kampus PTI UMS
+
+• 	Waktu loading halaman utama tidak lebih dari 3 detik pada koneksi normal
+
+• 	Form survey menampilkan indikator progres jika pertanyaan bersifat multi-langkah
+
+ 
+
+4.2 Keamanan
+
+• 	Halaman admin hanya dapat diakses setelah login berhasil; redirect ke halaman login jika belum autentikasi
+
+• 	Password admin disimpan dalam bentuk hash (bcrypt atau setara)
+
+• 	Proteksi terhadap serangan SQL Injection dan XSS pada semua input form
+
+• 	HTTPS wajib digunakan pada environment produksi
+
+ 
+
+4.3 Ketersediaan & Performa
+
+• 	Aplikasi harus dapat diakses 24/7 selama masa survey aktif
+
+• 	Mendukung setidaknya 100 pengguna bersamaan tanpa penurunan performa signifikan
+
+ 
+
+4.4 Kompatibilitas Browser
+
+Browser
+
+Versi Minimum
+
+Prioritas
+
+Google Chrome
+
+90+
+
+Utama
+
+Mozilla Firefox
+
+88+
+
+Utama
+
+Microsoft Edge
+
+90+
+
+Utama
+
+Safari (iOS/macOS)
+
+14+
+
+Pendukung
+
+Samsung Internet (Android)
+
+14+
+
+Pendukung
+
+ 
+
+
+
+ 
+
+5. Alur Pengguna (User Flow)
+
+5.1 Alur Alumni Mengisi Survey
+
+Langkah
+
+Aksi Pengguna
+
+Respons Sistem
+
+1
+
+Membuka URL aplikasi di browser
+
+Menampilkan halaman pencarian nama
+
+2
+
+Mulai mengetik nama (min. 2 karakter)
+
+Autocomplete menampilkan daftar nama yang cocok dari database
+
+3a
+
+Nama ditemukan, klik nama dari daftar
+
+Sistem memeriksa apakah sudah pernah mengisi
+
+3b
+
+Nama tidak ditemukan
+
+Tampil pesan: hubungi admin PTI UMS
+
+4a
+
+Belum pernah mengisi
+
+Menampilkan form survey kosong
+
+4b
+
+Sudah pernah mengisi
+
+Menampilkan ringkasan jawaban + tombol Edit Jawaban
+
+5
+
+Mengisi form survey, termasuk pertanyaan conditional
+
+Field conditional muncul/hilang otomatis sesuai jawaban Ya/Tidak
+
+6
+
+Klik tombol Kirim Survey
+
+Sistem memvalidasi semua field wajib
+
+7a
+
+Validasi berhasil
+
+Data tersimpan, tampil halaman konfirmasi sukses
+
+7b
+
+Validasi gagal
+
+Tampil pesan error pada field yang belum diisi
+
+8
+
+Selesai
+
+Alumni dapat kembali untuk edit, atau menutup browser
+
+ 
+
+5.2 Alur Admin Mengelola Data
+
+Langkah
+
+Aksi Admin
+
+Respons Sistem
+
+1
+
+Membuka URL /admin/login
+
+Menampilkan halaman login
+
+2
+
+Memasukkan username & password
+
+Autentikasi; jika berhasil redirect ke dashboard
+
+3
+
+Melihat dashboard utama
+
+Menampilkan statistik ringkas dan grafik terkini
+
+4
+
+Upload file Excel alumni baru
+
+Sistem validasi format, tampil preview, konfirmasi import
+
+5
+
+Melihat daftar pengisian survey
+
+Tabel alumni yang sudah/belum mengisi, filter & search tersedia
+
+6
+
+Klik detail alumni tertentu
+
+Menampilkan seluruh jawaban survey alumni tersebut
+
+7
+
+Mengunduh laporan Excel
+
+File .xlsx terunduh berisi seluruh data survey
+
+8
+
+Logout
+
+Sesi dihapus, redirect ke halaman login
+
+ 
+
+
+
+ 
+
+6. Struktur Data
+
+6.1 Tabel: Data Alumni (Database)
+
+Field
+
+Tipe Data
+
+Keterangan
+
+id
+
+Integer (PK, auto increment)
+
+Identifikasi unik alumni
+
+nama_lengkap
+
+String (255)
+
+Nama lengkap alumni
+
+nim
+
+String (20)
+
+Nomor Induk Mahasiswa (opsional, untuk validasi duplikat)
+
+tahun_lulus
+
+Integer
+
+Tahun kelulusan dari PTI UMS
+
+created_at
+
+Datetime
+
+Waktu data dimasukkan ke sistem
+
+updated_at
+
+Datetime
+
+Waktu data terakhir diperbarui
+
+ 
+
+6.2 Tabel: Data Survey
+
+Field
+
+Tipe Data
+
+Keterangan
+
+id
+
+Integer (PK)
+
+Identifikasi unik respons survey
+
+alumni_id
+
+Integer (FK)
+
+Relasi ke tabel alumni
+
+tahun_lulus_konfirmasi
+
+Integer
+
+Tahun lulus yang dikonfirmasi alumni saat isi survey
+
+status_pekerjaan
+
+Enum/String
+
+Status pekerjaan saat ini
+
+nama_instansi
+
+String (255)
+
+Nama instansi/tempat mengajar
+
+nomor_hp
+
+String (20)
+
+Nomor HP aktif alumni
+
+lanjut_s2s3
+
+Boolean
+
+Apakah melanjutkan studi S2/S3
+
+jurusan_s2s3
+
+String (255)
+
+Jurusan/prodi S2/S3 (nullable)
+
+universitas_s2s3
+
+String (255)
+
+Nama universitas S2/S3 (nullable)
+
+lanjut_ppg
+
+Boolean
+
+Apakah mengikuti program PPG
+
+tahun_ppg
+
+Integer
+
+Tahun mengikuti PPG (nullable)
+
+universitas_ppg
+
+String (255)
+
+Universitas penyelenggara PPG (nullable)
+
+pesan_saran
+
+Text
+
+Pesan/saran untuk prodi PTI UMS (nullable)
+
+created_at
+
+Datetime
+
+Waktu pertama kali mengisi survey
+
+updated_at
+
+Datetime
+
+Waktu terakhir mengupdate jawaban
+
+ 
+
+6.3 Tabel: Admin
+
+Field
+
+Tipe Data
+
+Keterangan
+
+id
+
+Integer (PK)
+
+Identifikasi unik admin
+
+username
+
+String (100, unique)
+
+Username untuk login
+
+password_hash
+
+String (255)
+
+Password ter-hash (bcrypt)
+
+nama
+
+String (255)
+
+Nama lengkap admin
+
+created_at
+
+Datetime
+
+Waktu akun dibuat
+
+ 
+
+
+
+ 
+
+7. Format File Excel Import Alumni
+
+File Excel yang digunakan admin untuk mengimpor data alumni harus mengikuti format berikut:
+
+ 
+
+Nama Kolom di Excel
+
+Tipe Data
+
+Wajib
+
+Keterangan
+
+Nama Lengkap
+
+Text
+
+Ya
+
+Nama lengkap alumni, tidak boleh kosong
+
+NIM
+
+Text
+
+Ya
+
+Nomor Induk Mahasiswa, untuk deteksi duplikat
+
+Tahun Lulus
+
+Angka (4 digit)
+
+Ya
+
+Contoh: 2019, 2020, 2021
+
+ 
+
+• 	Baris pertama (header/judul kolom) harus persis seperti format di atas
+
+• 	Kolom tambahan lainnya di luar format akan diabaikan oleh sistem
+
+• 	Sistem akan memvalidasi setiap baris: baris dengan data tidak valid akan ditandai dan dilaporkan
+
+• 	Admin dapat mengunduh template Excel kosong dari halaman import untuk kemudahan pengisian
+
+ 
+
+
+
+ 
+
+8. Rekomendasi Teknologi
+
+Berikut adalah rekomendasi stack teknologi yang dapat dipertimbangkan oleh tim pengembang:
+
+ 
+
+Komponen
+
+Rekomendasi
+
+Alternatif
+
+Frontend
+
+React.js / Next.js
+
+Vue.js / Nuxt.js
+
+Backend
+
+Node.js + Express / Laravel (PHP)
+
+Django (Python) / FastAPI
+
+Database
+
+PostgreSQL / MySQL
+
+SQLite (untuk skala kecil)
+
+Autentikasi Admin
+
+JWT / Session-based auth
+
+Passport.js / Laravel Sanctum
+
+File Upload Excel
+
+SheetJS (js-xlsx) / PHPSpreadsheet
+
+Openpyxl (Python)
+
+Grafik Dashboard
+
+Chart.js / Recharts
+
+ApexCharts / D3.js
+
+Hosting
+
+VPS kampus / shared hosting
+
+Vercel + Supabase (gratis)
+
+CSS Framework
+
+Tailwind CSS
+
+Bootstrap 5
+
+ 
+
+
+
+ 
+
+9. Daftar Halaman Aplikasi
+
+9.1 Sisi Alumni (Publik)
+
+URL
+
+Nama Halaman
+
+Deskripsi
+
+/
+
+Beranda / Pencarian
+
+Kolom cari nama, autocomplete, entry point alumni
+
+/survey/:id
+
+Halaman Survey
+
+Form pengisian survey untuk alumni yang dipilih
+
+/survey/:id/edit
+
+Edit Survey
+
+Form edit jawaban survey yang sudah disubmit
+
+/survey/selesai
+
+Konfirmasi Selesai
+
+Halaman sukses setelah submit survey
+
+ 
+
+9.2 Sisi Admin (Terproteksi Login)
+
+URL
+
+Nama Halaman
+
+Deskripsi
+
+/admin/login
+
+Login Admin
+
+Form login username & password
+
+/admin/dashboard
+
+Dashboard
+
+Statistik ringkas + grafik/chart analitik
+
+/admin/alumni
+
+Daftar Alumni
+
+Tabel seluruh alumni di database + fitur filter
+
+/admin/alumni/import
+
+Import Alumni
+
+Upload Excel, preview, dan konfirmasi import
+
+/admin/alumni/tambah
+
+Tambah Alumni
+
+Form tambah alumni manual satu per satu
+
+/admin/survey
+
+Data Survey
+
+Daftar alumni yang sudah dan belum mengisi
+
+/admin/survey/:id
+
+Detail Survey
+
+Jawaban lengkap survey satu alumni
+
+/admin/survey/export
+
+Export Excel
+
+Download semua data survey sebagai .xlsx
+
+ 
+
+
+
+ 
+
+10. Kriteria Penerimaan (Acceptance Criteria)
+
+10.1 Modul Alumni
+
+ID
+
+Skenario
+
+Kriteria Berhasil
+
+AC-A01
+
+Alumni mencari nama yang ada di database
+
+Nama muncul di dropdown, dapat dipilih, dan form survey tampil
+
+AC-A02
+
+Alumni mencari nama yang tidak ada di database
+
+Pesan 'Nama tidak terdaftar' tampil, form tidak dapat diakses
+
+AC-A03
+
+Alumni submit form dengan field wajib kosong
+
+Tombol submit tidak aktif atau muncul pesan validasi
+
+AC-A04
+
+Alumni submit form lengkap
+
+Data tersimpan, halaman konfirmasi muncul
+
+AC-A05
+
+Alumni yang sudah mengisi mencari namanya lagi
+
+Ringkasan jawaban lama tampil beserta tombol Edit Jawaban
+
+AC-A06
+
+Alumni mengedit dan menyimpan ulang jawaban
+
+Data baru tersimpan, menimpa data lama
+
+AC-A07
+
+Alumni menjawab 'Ya' pada pertanyaan PPG
+
+Field tahun PPG dan universitas PPG muncul otomatis
+
+AC-A08
+
+Alumni menjawab 'Tidak' pada pertanyaan PPG
+
+Field PPG tidak tampil dan tidak dikirim ke server
+
+ 
+
+10.2 Modul Admin
+
+ID
+
+Skenario
+
+Kriteria Berhasil
+
+AC-B01
+
+Admin login dengan kredensial benar
+
+Berhasil masuk ke dashboard admin
+
+AC-B02
+
+Admin login dengan kredensial salah
+
+Pesan error tampil, tidak bisa masuk
+
+AC-B03
+
+Admin upload Excel format benar
+
+Data ter-preview, setelah konfirmasi ter-import ke database
+
+AC-B04
+
+Admin upload Excel format salah
+
+Pesan error validasi tampil, data tidak diimport
+
+AC-B05
+
+Admin melihat dashboard
+
+Statistik & grafik terbaru tampil dengan data yang akurat
+
+AC-B06
+
+Admin mendownload data survey
+
+File .xlsx terunduh berisi seluruh data survey
+
+AC-B07
+
+Akses halaman admin tanpa login
+
+Redirect otomatis ke halaman /admin/login
+
+ 
+
+
+
+ 
+
+11. Asumsi & Batasan
+
+11.1 Asumsi
+
+• 	Data alumni awal sudah tersedia dalam format Excel dan siap untuk diimport ke sistem
+
+• 	Admin yang mengelola sistem memiliki kemampuan dasar penggunaan komputer dan browser
+
+• 	Alumni diasumsikan memiliki akses internet dan browser yang kompatibel
+
+• 	Setiap nama alumni dalam database diasumsikan unik; jika ada nama yang sama, NIM digunakan sebagai pembeda
+
+ 
+
+11.2 Batasan
+
+• 	Sistem hanya mendukung survey untuk jalur PPG dan S2/S3; perluasan ke jalur lain tidak termasuk versi ini
+
+• 	Tidak ada fitur notifikasi email untuk alumni maupun admin dalam versi ini
+
+• 	Alumni tidak dapat mendaftar sendiri ke database; pendaftaran hanya melalui import Excel oleh admin
+
+• 	Tidak ada fitur multi-bahasa; bahasa yang digunakan hanya Bahasa Indonesia
+
+• 	Laporan dalam format Excel saja; format PDF atau PowerPoint tidak disertakan dalam versi ini
+
+ 
+
+
+
+ 
+
+12. Rencana Pengembangan
+
+Fase
+
+Periode
+
+Cakupan Pengembangan
+
+Fase 1 - MVP
+
+Bulan 1-2
+
+Halaman pencarian alumni, form survey lengkap dengan conditional logic, submit & edit jawaban, login admin dasar
+
+Fase 2 - Admin Core
+
+Bulan 2-3
+
+Import Excel alumni, daftar alumni, monitoring pengisian survey, export Excel
+
+Fase 3 - Dashboard
+
+Bulan 3-4
+
+Dashboard analitik dengan grafik, filter & search data, optimasi tampilan mobile
+
+Fase 4 - Hardening
+
+Bulan 4
+
+Pengujian keamanan, optimasi performa, perbaikan bug, deployment ke server produksi
+
+ 
+
+ 
+
+ 
+
+Dokumen ini dibuat untuk keperluan pengembangan sistem Tracer Study Alumni PTI UMS.
+
+Versi 1.0  •  April 2026  •  Program Studi PTI UMS
+
+
+
+
