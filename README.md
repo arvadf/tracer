@@ -674,5 +674,5 @@ Proyek ini dibuat untuk keperluan internal **FKIP Universitas Muhammadiyah Surak
 ---
 
 <p align="center">
-  Dibuat dengan ❤️ untuk FKIP UMS
+  .
 </p>
