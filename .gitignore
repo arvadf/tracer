@@ -12,6 +12,9 @@ dist/
 out/
 
 
+# Data files
+*.xlsx
+
 # OS files
 .DS_Store
 Thumbs.db
